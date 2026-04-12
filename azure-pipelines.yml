@@ -1,0 +1,31 @@
+trigger:
+  branches:
+    include:
+      - main
+
+variables:
+  acrName: 'jackiedevops4acr'
+  acrLoginServer: 'jackiedevops4acr.azurecr.io'
+  imageName: 'azure-devops-cicd'
+  imageTag: '$(Build.BuildId)'
+
+stages:
+  - stage: Build
+    displayName: 'Build & Push Docker Image'
+    jobs:
+      - job: BuildJob
+        displayName: 'Build Docker Image'
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: Docker@2
+            displayName: 'Build and Push to ACR'
+            inputs:
+              command: buildAndPush
+              repository: $(imageName)
+              dockerfile: app/Dockerfile
+              buildContext: app/
+              containerRegistry: 'ACR-ServiceConnection'
+              tags: |
+                $(imageTag)
+                latest
