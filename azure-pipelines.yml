@@ -12,8 +12,23 @@ variables:
   resourceGroup: 'rg-azure-devops-cicd'
 
 stages:
+  - stage: Test
+    displayName: 'Run Tests'
+    jobs:
+      - job: TestJob
+        displayName: 'Run pytest'
+        pool:
+          name: Default
+        steps:
+          - script: |
+              cd app
+              pip install -r requirements.txt
+              pytest test_main.py -v
+            displayName: 'Install dependencies and run pytest'
+
   - stage: Build
     displayName: 'Build & Push Docker Image'
+    dependsOn: Test
     jobs:
       - job: BuildJob
         displayName: 'Build Docker Image'
