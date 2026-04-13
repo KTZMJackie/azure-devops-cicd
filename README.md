@@ -15,11 +15,14 @@ Every git push to main triggers a 3-stage pipeline: Test → Build → Deploy
 ## Architecture
 
 Developer → git push → Azure DevOps Pipeline
-                            ├── Stage 1: pytest
-                            ├── Stage 2: docker buildx → ACR
-                            └── Stage 3: az containerapp update
+
+                            Stage 1: pytest
+                            
+                            Stage 2: docker buildx → ACR
+                            
+                            Stage 3: az containerapp update
                                               ↓
-                                   Azure Container Apps (live)
+                            Azure Container Apps (live)
 
 ## Tech Stack
 
@@ -46,6 +49,7 @@ Developer → git push → Azure DevOps Pipeline
 |---|---|
 | Root | https://ca-devops-cicd.politemushroom-670b9f82.southeastasia.azurecontainerapps.io/ |
 | Health | https://ca-devops-cicd.politemushroom-670b9f82.southeastasia.azurecontainerapps.io/health |
+> Note: First request may take 10–30 seconds — Container App scales to zero when idle.
 
 ## Screenshots
 
