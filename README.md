@@ -49,8 +49,7 @@ Developer → git push → Azure DevOps Pipeline
 
 ## Screenshots
 
-echo "" >> README.md
-echo "![Azure Repo](screenshots/azure-repo.png)" >> README.md
+![Azure Repo](screenshots/azure-repo.png)
 
 ![Pipeline Success](screenshots/pipeline-success.png)
 
