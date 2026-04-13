@@ -8,6 +8,8 @@ variables:
   acrLoginServer: 'jackiedevops4acr.azurecr.io'
   imageName: 'azure-devops-cicd'
   imageTag: '$(Build.BuildId)'
+  containerAppName: 'ca-devops-cicd'
+  resourceGroup: 'rg-azure-devops-cicd'
 
 stages:
   - stage: Build
@@ -29,3 +31,24 @@ stages:
               tags: |
                 $(imageTag)
                 latest
+
+  - stage: Deploy
+    displayName: 'Deploy to Azure Container Apps'
+    dependsOn: Build
+    jobs:
+      - job: DeployJob
+        displayName: 'Deploy Container App'
+        pool:
+          name: Default
+        steps:
+          - task: AzureCLI@2
+            displayName: 'Update Container App with new image'
+            inputs:
+              azureSubscription: 'Azure-ServiceConnection'
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                az containerapp update \
+                  --name $(containerAppName) \
+                  --resource-group $(resourceGroup) \
+                  --image $(acrLoginServer)/$(imageName):$(imageTag)
