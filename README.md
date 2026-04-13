@@ -49,6 +49,9 @@ Developer → git push → Azure DevOps Pipeline
 
 ## Screenshots
 
+echo "" >> README.md
+echo "![Azure Repo](screenshots/azure-repo.png)" >> README.md
+
 ![Pipeline Success](screenshots/pipeline-success.png)
 
 ## How to Run Locally
