@@ -20,17 +20,14 @@ stages:
         pool:
           name: Default
         steps:
-          - task: Docker@2
-            displayName: 'Build and Push to ACR'
-            inputs:
-              command: buildAndPush
-              repository: $(imageName)
-              dockerfile: app/Dockerfile
-              buildContext: app/
-              containerRegistry: 'ACR-ServiceConnection'
-              tags: |
-                $(imageTag)
-                latest
+          - script: |
+              docker buildx create --use --name amd64builder || true
+              docker buildx build --platform linux/amd64 \
+                -t $(acrLoginServer)/$(imageName):$(imageTag) \
+                -t $(acrLoginServer)/$(imageName):latest \
+                --push \
+                ./app
+            displayName: 'Build and Push amd64 image to ACR'
 
   - stage: Deploy
     displayName: 'Deploy to Azure Container Apps'
