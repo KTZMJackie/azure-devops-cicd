@@ -49,7 +49,7 @@ Developer → git push → Azure DevOps Pipeline
 |---|---|
 | Root | https://ca-devops-cicd.politemushroom-670b9f82.southeastasia.azurecontainerapps.io/ |
 | Health | https://ca-devops-cicd.politemushroom-670b9f82.southeastasia.azurecontainerapps.io/health |
-> Note: First request may take 10–30 seconds — Container App scales to zero when idle.
+> Note: First request may take 10–30 seconds, infrastructure has been torn down to avoid ongoing Azure costs.
 
 ## Screenshots
 
@@ -67,3 +67,5 @@ Install dependencies and run:
 Run tests:
     cd app
     pytest test_main.py -v
+
+Note : Requires Azure environment variables for full functionality
