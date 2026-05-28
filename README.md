@@ -22,7 +22,7 @@ Developer → git push → Azure DevOps Pipeline
                             
                             Stage 3: az containerapp update
                                               ↓
-                            Azure Container Apps (live)
+                            Azure Container Apps
 
 ## Tech Stack
 
@@ -43,15 +43,10 @@ Developer → git push → Azure DevOps Pipeline
 - Zero-downtime deployment via Azure Container Apps revisions
 - ACR image tagged with Azure DevOps Build ID for full traceability
 
-## Live Endpoint
+## Deployment Evidence
 
-| Endpoint | URL |
-|---|---|
-| Root | https://ca-devops-cicd.politemushroom-670b9f82.southeastasia.azurecontainerapps.io/ |
-| Health | https://ca-devops-cicd.politemushroom-670b9f82.southeastasia.azurecontainerapps.io/health |
-> Note: First request may take 10–30 seconds, infrastructure has been torn down to avoid ongoing Azure costs.
-
-## Screenshots
+Pipeline successfully deployed to Azure Container Apps (Southeast Asia region).
+Infrastructure has been torn down to avoid ongoing costs.
 
 ![Azure Repo](screenshots/azure-repo.png)
 
