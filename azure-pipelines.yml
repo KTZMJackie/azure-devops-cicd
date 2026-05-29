@@ -4,7 +4,7 @@ trigger:
       - main
 
 #Non-sensitive resource identifiers. In proudction, move to
-#An Azure Devops variable group (Library > Variable Groups)
+#an Azure Devops variable group (Library > Variable Groups)
 #and link with: group: my-variable-group
 
 variables:
