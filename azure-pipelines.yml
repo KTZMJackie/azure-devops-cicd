@@ -3,6 +3,10 @@ trigger:
     include:
       - main
 
+#Non-sensitive resource identifiers. In proudction, move to
+#An Azure Devops variable group (Library > Variable Groups)
+#and link with: group: my-variable-group
+
 variables:
   acrName: 'jackiedevops4acr'
   acrLoginServer: 'jackiedevops4acr.azurecr.io'
@@ -22,7 +26,7 @@ stages:
         steps:
           - script: |
               cd app
-              pip install -r requirements.txt
+              pip install --no-cache-dir -r requirements.txt
               pytest test_main.py -v
             displayName: 'Install dependencies and run pytest'
 
