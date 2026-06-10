@@ -1,1 +1,17 @@
+# Self-hosted agent
 myagent/
+
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
+
+# Mac
+.DS_Store
+
+# Docker
+*.log
+
+# VS Code
+.vscode/
